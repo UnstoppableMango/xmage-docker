@@ -1,31 +1,33 @@
-FROM openjdk:8-jre-alpine AS base
+# syntax=docker/dockerfile-upstream:master-labs
+
+# https://github.com/magefree/mage/blob/master/pom.xml#L106
+FROM maven:3.8.1-openjdk-17 AS base
+
+FROM scratch AS git
+
+# renovate: datasource=github-releases depName=github.com/magefree/mage
+ARG UPSTREAM_VERSION=xmage_1.4.57V2
+
+ADD https://github.com/magefree/mage.git#${UPSTREAM_VERSION} /opt/xmage
+
+FROM base AS deps
+COPY --from=git --parents **/pom.xml .
+COPY --from=git /opt/xmage/repository /opt/xmage/repository
+
+WORKDIR /opt/xmage
+RUN --mount=type=cache,target=/root/.m2 mvn clean
+
+FROM base AS test
+COPY --from=git /opt/xmage /opt/xmage
 WORKDIR /opt/xmage
 
-FROM base AS setup
-WORKDIR /tmp
+# https://github.com/magefree/mage/blob/master/.travis.yml#L11
+RUN mvn test -B -Dxmage.dataCollectors.printGameLogs=false
 
-RUN apk add --no-cache -U jq curl && \
-    curl --silent --show-error http://xmage.de/xmage/config.json | jq '.XMage.location' | xargs curl -# -L > xmage.zip && \
-    unzip xmage.zip -x "mage-client*" &&  \
-    rm xmage.zip && \
-    apk del curl jq
+FROM deps AS build
+COPY --from=git /opt/xmage /opt/xmage
 
-FROM base AS final
-WORKDIR /opt/xmage/server
-
-ENV JAVA_MIN_MEMORY=256M \
-    JAVA_MAX_MEMORY=512M \
-    XMAGE_SERVER_ADDRESS="0.0.0.0" \
-    XMAGE_SERVER_NAME="mage-server" \
-    XMAGE_PORT="17171" \
-    XMAGE_SECONDARY_BIND_PORT="17179"
+WORKDIR /opt/xmage
+RUN mvn install -DskipTests
 
 EXPOSE 17171 17179
-
-COPY --from=setup /tmp/mage-server ./
-COPY docker-entrypoint.sh ./
-
-RUN chmod +x startServer.sh && \
-    chmod +x docker-entrypoint.sh
-
-ENTRYPOINT [ "./docker-entrypoint.sh" ]

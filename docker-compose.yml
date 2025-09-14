@@ -7,4 +7,4 @@ services:
       - "17171:17171"
       - "17179:17179"
     environment:
-      JAVA_MAX_MEMORY: 2G
+      JAVA_MAX_MEMORY: 4
