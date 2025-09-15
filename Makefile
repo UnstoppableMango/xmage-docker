@@ -5,8 +5,13 @@ DOCKER ?= docker
 DPRINT ?= dprint
 
 docker: bin/image.tar
+
+test:
+	$(DOCKER) buildx build ${CURDIR} \
+	--file Dockerfile --target test
+
 compose:
-	$(DOCKER) compose build .
+	$(DOCKER) compose build
 
 bin/image.tar: Dockerfile
 	$(DOCKER) buildx build ${CURDIR} \

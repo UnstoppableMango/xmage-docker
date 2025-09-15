@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile-upstream:master-labs
 FROM maven:3.9.11-eclipse-temurin-17-noble AS base
 
-# renovate: datasource=github-releases depName=github.com/magefree/mage
+# renovate: datasource=github-releases depName=magefree/mage
 ARG UPSTREAM_VERSION=xmage_1.4.57V2
 ADD https://github.com/magefree/mage.git#${UPSTREAM_VERSION} /opt/xmage
 
