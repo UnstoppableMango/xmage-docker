@@ -8,6 +8,12 @@ on:
     branches: [main]
 
 jobs:
+  dprint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dprint/check@v2.3
+
   build:
     name: Build
     runs-on: ubuntu-latest

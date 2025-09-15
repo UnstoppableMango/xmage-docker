@@ -39,5 +39,6 @@ WORKDIR /opt/xmage
 COPY --from=extract /opt/xmage .
 
 EXPOSE 17171 17179
+VOLUME /opt/xmage/db
 
 ENTRYPOINT ["/opt/xmage/startServer.sh"]
