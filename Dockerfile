@@ -1,7 +1,7 @@
-# syntax=docker/dockerfile-upstream:master-labs
+# syntax=docker/dockerfile:1
 FROM maven:3.9.11-eclipse-temurin-17-noble AS base
 
-# renovate: datasource=github-releases depName=github.com/magefree/mage
+# renovate: datasource=github-releases depName=magefree/mage
 ARG UPSTREAM_VERSION=xmage_1.4.57V2
 ADD https://github.com/magefree/mage.git#${UPSTREAM_VERSION} /opt/xmage
 
@@ -9,7 +9,9 @@ FROM base AS test
 
 WORKDIR /opt/xmage
 # https://github.com/magefree/mage/blob/master/.travis.yml#L11
-RUN mvn test -B -Dxmage.dataCollectors.printGameLogs=false
+RUN --mount=type=cache,target=/root/.m2 mvn test -B \
+  -Dxmage.dataCollectors.printGameLogs=false \
+  -Dlog4j.configuration=file:/opt/xmage/.travis/log4j.properties
 
 FROM base AS build
 
@@ -27,8 +29,9 @@ RUN DEBIAN_FRONTEND=noninteractive \
   && apt-get install -y --no-install-recommends unzip \
   && rm -rf /var/lib/apt/lists/*
 
-COPY --from=build /opt/xmage/Mage.Server/target/mage-server.zip /tmp/
-RUN unzip /tmp/mage-server.zip -d /opt/xmage
+WORKDIR /tmp
+COPY --from=build /opt/xmage/Mage.Server/target/mage-server.zip .
+RUN unzip mage-server.zip -d /opt/xmage
 
 FROM jre AS final
 
@@ -36,5 +39,6 @@ WORKDIR /opt/xmage
 COPY --from=extract /opt/xmage .
 
 EXPOSE 17171 17179
+VOLUME /opt/xmage/db
 
 ENTRYPOINT ["/opt/xmage/startServer.sh"]

@@ -8,6 +8,12 @@ on:
     branches: [main]
 
 jobs:
+  dprint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dprint/check@v2.3
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -51,3 +57,14 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           provenance: ${{ github.event_name != 'pull_request' }}
           sbom: ${{ github.event_name != 'pull_request' }}
+
+  test:
+    name: Test
+    # TODO
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker/build-push-action@v6
+        with:
+          target: test
+          cache-from: type=gha
