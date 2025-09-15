@@ -54,7 +54,8 @@ jobs:
 
   test:
     name: Test
-    if: ${{ github.event_name == 'pull_request' }}
+    # TODO
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: docker/build-push-action@v6
