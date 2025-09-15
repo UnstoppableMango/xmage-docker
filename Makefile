@@ -10,9 +10,10 @@ compose:
 
 bin/image.tar: Dockerfile
 	$(DOCKER) buildx build ${CURDIR} \
-	--file $< \
 	--output type=tar,dest=$@ \
-	--output type=image,name=${PROJECT}
+	--file $< \
+	--load \
+	--tag ${PROJECT}:dev
 
 format fmt:
 	$(DPRINT) fmt

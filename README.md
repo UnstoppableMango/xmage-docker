@@ -2,7 +2,7 @@
 
 A Docker container for <https://github.com/magefree/mage>.
 
-Not a Java guy, bear with me.
+Apologies in advance, not a Java guy, bear with me.
 
 ## Good Stuff
 
