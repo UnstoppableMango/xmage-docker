@@ -37,8 +37,9 @@ FROM jre AS final
 
 WORKDIR /opt/xmage
 COPY --from=extract /opt/xmage .
+COPY entrypoint.sh .
 
 EXPOSE 17171 17179
 VOLUME /opt/xmage/db
 
-ENTRYPOINT ["/opt/xmage/startServer.sh"]
+ENTRYPOINT ["/opt/xmage/entrypoint.sh"]
