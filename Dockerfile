@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM maven:3.9.11-eclipse-temurin-17-noble AS base
+FROM --platform=${BUILDPLATFORM} maven:3.9.11-eclipse-temurin-17-noble AS base
 
 # renovate: datasource=github-releases depName=magefree/mage
 ARG UPSTREAM_VERSION=xmage_1.4.57V2
@@ -21,7 +21,7 @@ RUN --mount=type=cache,target=/root/.m2 mvn clean install -DskipTests
 WORKDIR /opt/xmage/Mage.Server
 RUN --mount=type=cache,target=/root/.m2 mvn package assembly:single
 
-FROM eclipse-temurin:8u462-b08-jre-noble AS jre
+FROM --platform=${BUILDPLATFORM} eclipse-temurin:8u462-b08-jre-noble AS jre
 
 FROM jre AS extract
 RUN DEBIAN_FRONTEND=noninteractive \
