@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: thecluster
+    runs-on: ubuntu-latest
     env:
       PUSH: ${{ github.event_name != 'pull_request' }}
     steps:
