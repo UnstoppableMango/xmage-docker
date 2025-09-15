@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  mage-server:
+    build: .
+    ports:
+      - "17171:17171"
+      - "17179:17179"
+    environment:
+      JAVA_MAX_MEMORY: 4
