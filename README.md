@@ -2,10 +2,10 @@
 
 A Docker container for <https://github.com/magefree/mage>.
 
-Images are tagged as `unstoppablemango/xmage-docker` and pushed to:
+Images are tagged as `unstoppablemango/mage-server` and pushed to:
 
-- Dockerhub: [unstoppablemango/xmage-docker](https://hub.docker.com/r/unstoppablemango/xmage-docker)
-- GitHub Container Registry: [ghcr.io/unstoppablemango/xmage-docker](https://github.com/UnstoppableMango/xmage-docker/pkgs/container/xmage-docker)
+- Dockerhub: [unstoppablemango/mage-server](https://hub.docker.com/r/unstoppablemango/mage-server)
+- GitHub Container Registry: [ghcr.io/unstoppablemango/mage-server](https://github.com/UnstoppableMango/xmage-docker/pkgs/container/mage-server)
 
 Apologies in advance, not a Java guy, bear with me.
 
