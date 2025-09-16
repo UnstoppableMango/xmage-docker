@@ -48,9 +48,9 @@ For the most up-to-date documentation, refer to the [source config.xml](https://
 - `XMAGE_MAX_PASSWORD_LENGTH`
 - `XMAGE_MAX_AI_OPPONENTS`: number of allowed workable AI opponents on the server (draft bots are unlimited)
 - `XMAGE_SAVE_GAME_ACTIVATED`: allow game save and replay options (not working correctly yet)
-- `XMAGE_AUTHENTICATION_ACTIVATED`:  "true" = user have to register to signon "false" = user need not to register
+- `XMAGE_AUTHENTICATION_ACTIVATED`: "true" = user have to register to signon "false" = user need not to register
 - `XMAGE_GOOGLE_ACCOUNT`: not supported currently
-- `XMAGE_MAILGUN_API_KEY`: key from the mailgun domain  e.g. = "key-12121111..."
+- `XMAGE_MAILGUN_API_KEY`: key from the mailgun domain e.g. = "key-12121111..."
 - `XMAGE_MAILGUN_DOMAIN`: domain for the mailgun message sending
 - `XMAGE_MAIL_SMTP_HOST`: hostname to send the mail
 - `XMAGE_MAIL_SMTP_PORT`: port to send the mail
