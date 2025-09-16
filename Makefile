@@ -8,7 +8,7 @@ PLATFORM ?= linux/amd64
 
 docker: bin/image.tar
 
-run:
+run: docker
 	$(DOCKER) run --rm -it \
 	-v ./hack/db:/opt/xmage/db \
 	-p 17171:17171 \
