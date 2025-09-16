@@ -1,5 +1,10 @@
 # xmage-docker
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/UnstoppableMango/xmage-docker/ci.yml?logo=github)
+![GitHub Release](https://img.shields.io/github/v/release/UnstoppableMango/xmage-docker?logo=github)
+![Docker Image Version](https://img.shields.io/docker/v/unstoppablemango/mage-server?logo=docker)
+![Docker Pulls](https://img.shields.io/docker/pulls/unstoppablemango/mage-server?logo=docker)
+
 A Docker container for <https://github.com/magefree/mage>.
 
 Images are tagged as `unstoppablemango/mage-server` and pushed to:
