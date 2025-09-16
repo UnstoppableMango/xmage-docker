@@ -12,7 +12,7 @@ run: docker
 	$(DOCKER) run --rm -it \
 	-v ./hack/db:/opt/xmage/db \
 	-p 17171:17171 \
-	xmage-docker:dev
+	${PROJECT}:dev
 
 test:
 	$(DOCKER) buildx build ${CURDIR} \
