@@ -22,10 +22,11 @@ Apologies in advance, not a Java guy, bear with me.
 ### Configuration
 
 The default configuration can be found [on GitHub](https://github.com/magefree/mage/blob/master/Mage.Server/config/config.xml).
-The default configuration path within the container is `/opt/xmage/config/config.xml`.
-The configuration file path can be changed by setting `XMAGE_CONFIG_PATH`.
+The default path of this configuration within the container is `/opt/xmage/config/config.xml`.
+This configuration file path can be changed by setting `XMAGE_CONFIG_PATH`.
+
 Alternatively, the container can be configured by supplying environment variables.
-These will be substituted into the xml configuration file at container start.
+These will be applied to the xml configuration file at container start.
 
 > [!NOTE]
 > Environment variables will be replaced ONLY when using the default configuration path.
