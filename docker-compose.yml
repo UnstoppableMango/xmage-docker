@@ -4,5 +4,15 @@ services:
     ports:
       - "17171:17171"
       - "17179:17179"
+    extra_hosts:
+      - "localhost:0.0.0.0"
     environment:
       JAVA_MAX_MEMORY: 4
+      XMAGE_SERVER_ADDRESS: localhost
+      XMAGE_SECONDARY_BIND_PORT: 17179
+    volumes:
+      - xmage-db:/opt/xmage/db
+      - xmage-saved:/opt/xmage/saved
+volumes:
+  xmage-db:
+  xmage-saved:

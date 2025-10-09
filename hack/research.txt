@@ -1,0 +1,7 @@
+Some links:
+
+https://github.com/magefree/mage/issues/5348#issuecomment-425673413
+https://www.reddit.com/r/XMage/comments/a2p72g/cannot_connect_to_any_server_including_local_host/
+https://github.com/goesta/docker-xmage
+https://github.com/magefree/mage/issues/12748
+https://github.com/magefree/mage/pull/12828

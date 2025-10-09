@@ -70,6 +70,7 @@ fi
 declare -a JAVA_ARGS=(
   "-Xmx${MAX_MEMORY:-1024m}"
   "-Dxmage.config.path=$XMAGE_CONFIG_PATH"
+  "-Djava.net.preferIPv4Stack=true"
 )
 
 if [ -n "$MIN_MEMORY" ]; then
