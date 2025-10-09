@@ -20,11 +20,9 @@ jobs:
             docker.io/unstoppablemango/mage-server
             ghcr.io/unstoppablemango/mage-server
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=ref,event=tag
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=nightly
+            type=semver,pattern={{major}}.{{minor}}-nightly
+            type=semver,pattern={{major}}-nightly
             type=sha
 
       - if: ${{ github.event_name != 'pull_request' }}
@@ -42,6 +40,7 @@ jobs:
 
       - uses: docker/build-push-action@v6
         with:
+          build-args: UPSTREAM_VERSION=main
           platforms: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
           push: ${{ github.event_name != 'pull_request' }}
           cache-from: type=gha
