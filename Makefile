@@ -11,7 +11,11 @@ docker: bin/image.tar
 run: docker
 	$(DOCKER) run --rm -it \
 	-v ./hack/db:/opt/xmage/db \
-	-p 17171:17171 \
+	-v ./hack/saved:/opt/xmage/saved \
+	-p 17171:17171 -p 17179:17179 \
+	--add-host localhost:0.0.0.0 \
+	-e XMAGE_SERVER_ADDRESS=localhost \
+	-e XMAGE_SECONDARY_BIND_PORT=17179 \
 	${PROJECT}:dev
 
 test:

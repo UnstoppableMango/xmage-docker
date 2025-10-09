@@ -1,3 +1,4 @@
 bin/
-hack/db
+hack/db/
+hack/saved/
 .envrc
