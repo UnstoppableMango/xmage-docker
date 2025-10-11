@@ -88,8 +88,8 @@ Additionally, it will write a tarball to [bin/image.tar](./bin/image.tar).
 
 ## References
 
-<https://github.com/goesta/docker-xmage>
-<https://github.com/magefree/mage/pull/12828>
+- <https://github.com/goesta/docker-xmage>
+- <https://github.com/magefree/mage/pull/12828>
 
 ## TODO
 
