@@ -41,5 +41,6 @@ COPY entrypoint.sh .
 
 EXPOSE 17171 17179
 VOLUME /opt/xmage/db
+VOLUME /opt/xmage/saved
 
 ENTRYPOINT ["/opt/xmage/entrypoint.sh"]
