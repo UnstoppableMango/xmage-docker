@@ -22,7 +22,7 @@ jobs:
             ghcr.io/unstoppablemango/mage-server
           tags: |
             type=raw,value=nightly
-            type=raw,value=upstream-main
+            type=raw,value=upstream-master
             type=semver,pattern={{major}}.{{minor}}-nightly
             type=semver,pattern={{major}}-nightly
             type=sha
@@ -40,7 +40,7 @@ jobs:
 
       - uses: docker/build-push-action@v6
         with:
-          build-args: UPSTREAM_VERSION=main
+          build-args: UPSTREAM_VERSION=master
           platforms: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
           push: true
           cache-from: type=gha
