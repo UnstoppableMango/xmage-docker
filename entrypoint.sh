@@ -19,7 +19,7 @@ if [ "$XMAGE_CONFIG_PATH" == "$DEFAULT_CONFIG" ] && [ -f "$XMAGE_CONFIG_PATH" ];
   # https://github.com/magefree/mage/blob/master/Mage.Server/release/config/config.xml
   echo "Applying configuration from environment variables to ${XMAGE_CONFIG_PATH}"
   apply_config "serverAddress" "${XMAGE_SERVER_ADDRESS:-0.0.0.0}"
-  apply_config "serverName" "${XMAGE_SERVER_NAME:-}"
+  apply_config "serverName" "${XMAGE_SERVER_NAME:-mage-server}"
   apply_config "port" "${XMAGE_PORT:-17171}"
   apply_config "secondaryBindPort" "${XMAGE_SECONDARY_BIND_PORT:--1}"
   apply_config "backlogSize" "${XMAGE_BACKLOG_SIZE:-200}"
@@ -62,7 +62,9 @@ if [ -n "$JAVA_MIN_MEMORY" ]; then
 fi
 
 if [ -n "$JAVA_EXTRA_ARGS" ]; then
-  JAVA_ARGS+=("$JAVA_EXTRA_ARGS")
+  # Split JAVA_EXTRA_ARGS into separate arguments and append them to JAVA_ARGS
+  read -r -a EXTRA_ARGS <<< "$JAVA_EXTRA_ARGS"
+  JAVA_ARGS+=("${EXTRA_ARGS[@]}")
 fi
 
 cat <<EOF
