@@ -4,11 +4,11 @@ WORKDIR /opt/xmage
 FROM base AS setup
 WORKDIR /tmp
 
-RUN apk add --no-cache -U jq curl && \
-    curl --silent --show-error http://xmage.de/xmage/config.json | jq '.XMage.location' | xargs curl -# -L > xmage.zip && \
-    unzip xmage.zip -x "mage-client*" &&  \
-    rm xmage.zip && \
-    apk del curl jq
+RUN apk add --no-cache -U jq curl \
+    && curl --silent --show-error http://xmage.de/xmage/config.json | jq '.XMage.location' | xargs curl -# -L >xmage.zip \
+    && unzip xmage.zip -x "mage-client*" \
+    && rm xmage.zip \
+    && apk del curl jq
 
 FROM base AS final
 WORKDIR /opt/xmage/server
@@ -25,7 +25,7 @@ EXPOSE 17171 17179
 COPY --from=setup /tmp/mage-server ./
 COPY docker-entrypoint.sh ./
 
-RUN chmod +x startServer.sh && \
-    chmod +x docker-entrypoint.sh
+RUN chmod +x startServer.sh \
+    && chmod +x docker-entrypoint.sh
 
-ENTRYPOINT [ "./docker-entrypoint.sh" ]
+ENTRYPOINT ["./docker-entrypoint.sh"]

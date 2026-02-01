@@ -1,8 +1,8 @@
-_ != mkdir -p bin
 PROJECT := xmage-docker
 
 DOCKER ?= docker
 DPRINT ?= dprint
+NIX    ?= nix
 
 PLATFORM ?= linux/amd64
 
@@ -25,8 +25,11 @@ test:
 compose:
 	$(DOCKER) compose build
 
+check:
+	$(NIX) flake check
+
 bin/image.tar: Dockerfile entrypoint.sh
-	$(DOCKER) buildx build ${CURDIR} \
+	mkdir -p ${@D} && $(DOCKER) buildx build ${CURDIR} \
 	--output type=tar,dest=$@ \
 	--platform ${PLATFORM} \
 	--tag ${PROJECT}:dev \
@@ -35,3 +38,6 @@ bin/image.tar: Dockerfile entrypoint.sh
 
 format fmt:
 	$(DPRINT) fmt
+
+update:
+	$(NIX) flake update

@@ -10,8 +10,8 @@ FROM base AS test
 WORKDIR /opt/xmage
 # https://github.com/magefree/mage/blob/master/.travis.yml#L11
 RUN --mount=type=cache,target=/root/.m2 mvn test -B \
-  -Dxmage.dataCollectors.printGameLogs=false \
-  -Dlog4j.configuration=file:/opt/xmage/.travis/log4j.properties
+    -Dxmage.dataCollectors.printGameLogs=false \
+    -Dlog4j.configuration=file:/opt/xmage/.travis/log4j.properties
 
 FROM base AS build
 
@@ -25,9 +25,9 @@ FROM --platform=${BUILDPLATFORM} eclipse-temurin:8u462-b08-jre-noble AS jre
 
 FROM jre AS extract
 RUN DEBIAN_FRONTEND=noninteractive \
-  apt-get -y update \
-  && apt-get install -y --no-install-recommends unzip \
-  && rm -rf /var/lib/apt/lists/*
+    apt-get -y update \
+    && apt-get install -y --no-install-recommends unzip \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp
 COPY --from=build /opt/xmage/Mage.Server/target/mage-server.zip .
