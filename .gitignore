@@ -2,3 +2,4 @@ bin/
 hack/db/
 hack/saved/
 .envrc
+.direnv/
