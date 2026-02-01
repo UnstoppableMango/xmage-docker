@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM --platform=${BUILDPLATFORM} maven:3.9.11-eclipse-temurin-17-noble AS base
+FROM --platform=${BUILDPLATFORM} maven:3.9.12-eclipse-temurin-17-noble AS base
 
 # renovate: datasource=github-releases depName=magefree/mage extractVersion=xmage_(?<version>.*)
 ARG UPSTREAM_VERSION=xmage_1.4.58V1
