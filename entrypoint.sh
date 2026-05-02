@@ -11,7 +11,6 @@ function apply_config () {
     local KEY="$1"
     local VALUE="$2"
 
-    echo "Setting $KEY to ${VALUE:-<empty>}"
     sed -i -e "s#\($KEY=\)[\"].*[\"]#\1\"$VALUE\"#g" "${XMAGE_CONFIG_PATH}"
 }
 
