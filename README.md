@@ -5,6 +5,7 @@
 [![GitHub Release](https://img.shields.io/github/v/release/UnstoppableMango/xmage-docker?logo=github)](https://github.com/UnstoppableMango/xmage-docker/releases/latest)
 [![Docker Image Version](https://img.shields.io/docker/v/unstoppablemango/mage-server?logo=docker)](https://hub.docker.com/r/unstoppablemango/mage-server/tags)
 [![Docker Pulls](https://img.shields.io/docker/pulls/unstoppablemango/mage-server?logo=docker)](https://hub.docker.com/r/unstoppablemango/mage-server)
+[![Hercules CI](https://hercules-ci.com/api/v1/site/github/account/UnstoppableMango/project/xmage-docker/badge)](https://hercules-ci.com/github/UnstoppableMango/xmage-docker)
 
 A Docker container for <https://github.com/magefree/mage>.
 
