@@ -1,15 +1,15 @@
 on:
   schedule:
-    - cron: '0 0 * * *' # every day at midnight
+    - cron: "0 0 * * *" # every day at midnight
 
 permissions:
   contents: read
   packages: write
-    
+
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: xmage-docker-runners
     steps:
       - uses: docker/setup-qemu-action@06116385d9baf250c9f4dcb4858b16962ea869c3 # v4
       - uses: docker/setup-buildx-action@d7f5e7f509e45cec5c76c4d5afdd7de93d0b3df5 # v4
@@ -41,7 +41,8 @@ jobs:
       - uses: docker/build-push-action@f9f3042f7e2789586610d6e8b85c8f03e5195baf # v7
         with:
           build-args: UPSTREAM_VERSION=master
-          platforms: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
+          platforms: |
+            ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
