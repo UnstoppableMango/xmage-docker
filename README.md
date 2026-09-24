@@ -67,6 +67,9 @@ For the most up-to-date documentation, refer to the [source config.xml](https://
 |             `XMAGE_MAIL_PASSWORD` | password of the used user to send the mail                                                                                                                                                                                                                                                                                                                                                       |
 |         `XMAGE_MAIL_FROM_ADDRESS` | sender address                                                                                                                                                                                                                                                                                                                                                                                   |
 
+In addition to the above, you can specify java arguments using the `JAVA_EXTRA_ARGS` environment variable.
+`JAVA_MAX_MEMORY` and `JAVA_MIN_MEMORY` set `-Xmx` and `-Xms` respectively.
+
 ## Development
 
 ### Pre-requisites
