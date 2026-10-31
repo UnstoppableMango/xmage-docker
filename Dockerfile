@@ -2,7 +2,7 @@
 FROM --platform=${BUILDPLATFORM} maven:3.9.16-eclipse-temurin-17-noble AS base
 
 # renovate: datasource=github-releases depName=magefree/mage versioning=regex:^(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)V(?<build>\d+)$ extractVersion=^xmage_(?<version>.+)$
-ARG XMAGE_VERSION=1.4.61V1
+ARG XMAGE_VERSION=1.4.63V1
 # Git ref to build. The nightly workflow overrides this with "master".
 ARG UPSTREAM_VERSION=xmage_${XMAGE_VERSION}
 ADD https://github.com/magefree/mage.git#${UPSTREAM_VERSION} /opt/xmage
